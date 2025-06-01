@@ -12,7 +12,7 @@ const ThankYouPage = () => {
     useEffect(()=>{
         const fetchOrder= async()=>{
             try{
-                const response = await fetch(`http://localhost:5000/orders/${orderId}`);
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/orders/${orderId}`);
                 const data = await response.json();
                 setOrderData(data);
 

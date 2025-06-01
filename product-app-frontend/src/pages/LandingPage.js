@@ -8,7 +8,7 @@ export const LandingPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:5000/products/getProduct')
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/products/getProduct`)
         .then((res) => res.json())
         .then((data) => setProduct(data))
         .catch((err) => console.error('error while fetching the products', err))
