@@ -1,13 +1,21 @@
-// ProductCard.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import QuantitySelector from "./QuantitySelector.js";
+import QuantitySelector from "./QuantitySelector";
 import "./ProductCard.css";
 
 export const ProductCard = ({ product }) => {
   const navigate = useNavigate();
-  const [quantity, setQuantity] = useState(0);
+
+  const [quantity, setQuantity] = useState(() => {
+    const stored = localStorage.getItem("selectedQuantity");
+    return stored ? parseInt(stored, 10) : 0;
+  });
+  
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
+
+  useEffect(() => {
+    localStorage.setItem("selectedQuantity", quantity);
+  }, [quantity]);
 
   const watchImages = {
     black:
@@ -65,13 +73,8 @@ export const ProductCard = ({ product }) => {
         ))}
       </div>
 
-      <QuantitySelector
-        quantity={quantity}
-        min={1}
-        max={10}
-        onQuantityChange={setQuantity}
-      />
-
+      <QuantitySelector quantity={quantity} setQuantity={setQuantity} min={1} max={10} />
+      
       <button onClick={handleBuyNow}>Buy Now!</button>
       {quantity >= 1 && (
         <button onClick={handleClearCart} className="clear-cart-button">

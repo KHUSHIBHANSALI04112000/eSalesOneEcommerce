@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {ProductCard} from './ProductCard.js'
 import './LandingPage.css'
 
 export const LandingPage = () => {
     const [product, setProduct] = useState();
-    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_BACKEND_URL}/products/getProduct`)
