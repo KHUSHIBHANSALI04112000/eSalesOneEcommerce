@@ -90,5 +90,6 @@ The repository is organized into two main parts:
    ```bash
    cd backend and type node index.js
 2. **Navigate to the Frontend Directory:**
+  ```bash
    cd product-app-frontend and type npm start
 
